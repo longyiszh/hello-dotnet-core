@@ -28,24 +28,25 @@ namespace employee
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILogger<Startup> logger)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Use(async (context, next) =>
-            {
-                logger.LogInformation("M1-req");
-                await next();
-                logger.LogInformation("M1-res");
-            });
+            //app.Use(async (context, next) =>
+            //{
+            //    logger.LogInformation("M1-req");
+            //    await next();
+            //    logger.LogInformation("M1-res");
+            //});
 
-            app.Use(async (context, next) =>
-            {
-                logger.LogInformation("M2-req");
-                await next();
-                logger.LogInformation("M2-res");
-            });
+            //app.Use(async (context, next) =>
+            //{
+            //    logger.LogInformation("M2-req");
+            //    await next();
+            //    logger.LogInformation("M2-res");
+            //});
 
             // Terminal Middleware: Pipeline starts to reverse
             app.Run(async (context) =>
@@ -58,5 +59,6 @@ namespace employee
 
             });
         }
+
     }
 }
