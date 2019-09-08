@@ -20,8 +20,11 @@ namespace employee
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        // Dependency injection container
         public void ConfigureServices(IServiceCollection services)
         {
+            // use MVC
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +59,10 @@ namespace employee
             //app.UseFileServer(fsOptions);
             #endregion
 
-            app.UseFileServer();
+            //app.UseFileServer();
+
+            // use MVC
+            app.UseMvcWithDefaultRoute();
 
             //app.Use(async (context, next) =>
             //{
