@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using employee.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,7 +25,10 @@ namespace employee
         public void ConfigureServices(IServiceCollection services)
         {
             // use MVC
-            services.AddMvc();
+            services.AddMvc(); // difference from AddMvcCore(): AddMvcCore() ∈ AddMvc()
+
+            // services
+            services.AddSingleton<IEmployeeRepo, MockEmployeeRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
