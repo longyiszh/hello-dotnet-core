@@ -25,7 +25,8 @@ namespace employee
         public void ConfigureServices(IServiceCollection services)
         {
             // use MVC
-            services.AddMvc(); // difference from AddMvcCore(): AddMvcCore() ∈ AddMvc()
+            // services.AddMvc(); // difference from AddMvcCore(): AddMvcCore() ∈ AddMvc()
+            services.AddMvc().AddXmlSerializerFormatters(); // add xml serializer
 
             // services
             services.AddSingleton<IEmployeeRepo, MockEmployeeRepo>();
