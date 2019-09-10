@@ -25,6 +25,7 @@ namespace employee.Controllers
         public ViewResult Details()
         {
             Employee model = _employeeRepo.GetEmployee(1);
+            ViewBag.pageTitle = "Employee Details";
             return View(model);
         }
 

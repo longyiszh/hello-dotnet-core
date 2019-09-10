@@ -1,9 +1,17 @@
-﻿<!DOCTYPE html>
+﻿@model employee.Models.Employee
+
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Details</title>
+  <title>@ViewBag.pageTitle</title>
 </head>
 <body>
-  <h1>Details la la la</h1>
+  <h2> Details for Employee @Model.Name</h2>
+  <p>ID: @Model.ID</p>
+  <p>Name: @Model.Name</p>
+  <p>Email: @Model.Email</p>
+  <p>Department: @Model.Department</p>
+  <br />
+  <p>Avatar:@Model.Avatar</p>
 </body>
 </html>
