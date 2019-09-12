@@ -7,6 +7,7 @@ namespace employee.Models
 {
     public interface IEmployeeRepo
     {
-        Employee GetEmployee(int ID);
+        Employee GetAnEmployee(int ID);
+        IEnumerable<Employee> GetEmployees();
     }
 }

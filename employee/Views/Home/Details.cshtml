@@ -1,17 +1,17 @@
-﻿@model employee.Models.Employee
+﻿@model employee.ViewModels.HomeDetailsViewModel
 
 <!DOCTYPE html>
 <html>
 <head>
-  <title>@ViewBag.pageTitle</title>
+  <title>@Model.title</title>
 </head>
 <body>
-  <h2> Details for Employee @Model.Name</h2>
-  <p>ID: @Model.ID</p>
-  <p>Name: @Model.Name</p>
-  <p>Email: @Model.Email</p>
-  <p>Department: @Model.Department</p>
+  <h2> Details for Employee @Model.Employee.Name</h2>
+  <p>ID: @Model.Employee.ID</p>
+  <p>Name: @Model.Employee.Name</p>
+  <p>Email: @Model.Employee.Email</p>
+  <p>Department: @Model.Employee.Department</p>
   <br />
-  <p>Avatar:@Model.Avatar</p>
+  <p>Avatar:@Model.Employee.Avatar</p>
 </body>
 </html>

@@ -1,4 +1,5 @@
 ﻿using employee.Models;
+using employee.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,20 +19,28 @@ namespace employee.Controllers
 
         //public ObjectResult GetSingleEmployee()
         //{
-        //    Employee model = _employeeRepo.GetEmployee(1);
+        //    Employee model = _employeeRepo.GetAnEmployee(1);
         //    return new ObjectResult(model);
         //}
 
         public ViewResult Details()
         {
-            Employee model = _employeeRepo.GetEmployee(1);
-            ViewBag.pageTitle = "Employee Details";
-            return View(model);
+            //Employee model = _employeeRepo.GetAnEmployee(1);
+            //ViewBag.pageTitle = "Employee Details";
+            //return View(model);
+            HomeDetailsViewModel vm = new HomeDetailsViewModel()
+            {
+                Employee = _employeeRepo.GetAnEmployee(1),
+                title = "Employee Details",
+            };
+
+            return View(vm);
         }
 
-        public string Index()
+        public ViewResult Index()
         {
-            return "Employee works";
+            var model = _employeeRepo.GetEmployees();
+            return View(model);
         }
     }
 }

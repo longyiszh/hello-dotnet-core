@@ -38,10 +38,14 @@ namespace employee.Models
 
         }
 
-
-        public Employee GetEmployee(int ID)
+        public Employee GetAnEmployee(int ID)
         {
             return employees.FirstOrDefault((emp) => { return emp.ID == ID; });
+        }
+
+        public IEnumerable<Employee> GetEmployees()
+        {
+            return employees;
         }
     }
 }
