@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace employee.Controllers
 {
+    [Route("[controller]/[action]")] // <- attribute routing: usual in REST API
     public class HomeController : Controller
     {
         private readonly IEmployeeRepo _employeeRepo;
+
 
         public HomeController(IEmployeeRepo employeeRepo)
         {
@@ -23,20 +25,23 @@ namespace employee.Controllers
         //    return new ObjectResult(model);
         //}
 
-        public ViewResult Details()
+        [Route("{id?}")]
+        public ViewResult Details(int? id)
         {
             //Employee model = _employeeRepo.GetAnEmployee(1);
             //ViewBag.pageTitle = "Employee Details";
             //return View(model);
             HomeDetailsViewModel vm = new HomeDetailsViewModel()
             {
-                Employee = _employeeRepo.GetAnEmployee(1),
+                Employee = _employeeRepo.GetAnEmployee(id??0),
                 title = "Employee Details",
             };
 
             return View(vm);
         }
 
+        [Route("~/Home")]
+        [Route("~/")]
         public ViewResult Index()
         {
             var model = _employeeRepo.GetEmployees();
