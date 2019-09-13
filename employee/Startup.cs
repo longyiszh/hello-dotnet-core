@@ -67,12 +67,12 @@ namespace employee
             app.UseFileServer();
 
             // use MVC
-            //app.UseMvcWithDefaultRoute(); // <- identical to the following conventional routing:
+            app.UseMvcWithDefaultRoute(); // <- identical to the following conventional routing:
             //app.UseMvc(( routes ) => {
             //    routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             //});
 
-            app.UseMvc();
+            //app.UseMvc();
 
 
 

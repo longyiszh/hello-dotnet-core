@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace employee.Controllers
 {
-    [Route("[controller]/[action]")] // <- attribute routing: usual in REST API
+    //[Route("[controller]/[action]")] // <- attribute routing: usual in REST API
     public class HomeController : Controller
     {
         private readonly IEmployeeRepo _employeeRepo;
@@ -25,7 +25,7 @@ namespace employee.Controllers
         //    return new ObjectResult(model);
         //}
 
-        [Route("{id?}")]
+        //[Route("{id?}")]
         public ViewResult Details(int? id)
         {
             //Employee model = _employeeRepo.GetAnEmployee(1);
@@ -40,8 +40,8 @@ namespace employee.Controllers
             return View(vm);
         }
 
-        [Route("~/Home")]
-        [Route("~/")]
+        //[Route("~/Home")]
+        //[Route("~/")]
         public ViewResult Index()
         {
             var model = _employeeRepo.GetEmployees();
