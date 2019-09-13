@@ -1,36 +1,23 @@
 ﻿@model IEnumerable<Employee>
 
 @{
-    //Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Employee List";
+  //Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "Employee List";
 }
 
 
-<table>
-
-  <thead>
-    <tr>
-      <td>ID</td>
-      <td>Name</td>
-      <td>Email</td>
-      <td>Department</td>
-      <td>Avatar</td>
-    </tr>
-  </thead>
-
-  <tbody>
-    @foreach (var emp in Model)
-    {
-      <tr>
-        <td> @emp.ID </td>
-        <td> @emp.Name </td>
-        <td> @emp.Email </td>
-        <td> @emp.Department </td>
-        <td> @emp.Avatar </td>
-      </tr>
-    }
-
-  </tbody>
-
-</table>
-
+@foreach (var emp in Model) {
+  <div class="card user col-3" title="@emp.ID">
+    <img class="card-img-top img-fluid" src="~/images/user-default.png" alt="avatar of @emp.Name">
+    <div class="card-body">
+      <h5 class="card-title">@emp.Name</h5>
+      <p class="card-text">Department: @emp.Department</p>
+      <p class="card-text">Email: <a href="mailto:@emp.Email">@emp.Email</a></p>
+    </div>
+    <div class="card-body">
+      <a href="#" class="card-link text-info">View</a>
+      <a href="#" class="card-link text-primary">Edit</a>
+      <a href="#" class="card-link text-danger">Delete</a>
+    </div>
+  </div>
+}

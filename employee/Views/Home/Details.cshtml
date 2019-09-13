@@ -1,17 +1,30 @@
 ﻿@model HomeDetailsViewModel
 
 @{
-    //Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Employee Details";
+  //Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "Employee Details";
 }
 
-<h2> Details for Employee @Model.Employee.Name</h2>
-<p>ID: @Model.Employee.ID</p>
-<p>Name: @Model.Employee.Name</p>
-<p>Email: @Model.Employee.Email</p>
-<p>Department: @Model.Employee.Department</p>
-<br />
-<p>Avatar:@Model.Employee.Avatar</p>
+<section class="detail">
+  <h2> Details for Employee @Model.Employee.Name</h2>
+
+  <div class="card user" title="@Model.Employee.ID">
+    <img class="card-img-top" src="~/images/user-default.png" alt="avatar of @Model.Employee.Name">
+    <div class="card-body">
+      <h5 class="card-title">@Model.Employee.Name</h5>
+      <p class="card-text">Department: @Model.Employee.Department</p>
+      <p class="card-text">Email: <a href="mailto:@Model.Employee.Email">@Model.Employee.Email</a></p>
+    </div>
+    <div class="card-body">
+      <a href="#" class="card-link text-info">View</a>
+      <a href="#" class="card-link text-primary">Edit</a>
+      <a href="#" class="card-link text-danger">Delete</a>
+    </div>
+  </div>
+</section>
+
+
+
 
 @section Scripts {
   <script src="~/js/details.js"></script>

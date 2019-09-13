@@ -1,0 +1,12 @@
+﻿body {
+  font-size: 14px;
+}
+
+.container {
+  display: flex;
+}
+
+.user.card {
+  margin: 1em auto;
+  /* width: 10em; */
+}
