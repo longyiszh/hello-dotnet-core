@@ -64,7 +64,7 @@ namespace employee
             //app.UseFileServer(fsOptions);
             #endregion
 
-            //app.UseFileServer();
+            app.UseFileServer();
 
             // use MVC
             app.UseMvcWithDefaultRoute();
