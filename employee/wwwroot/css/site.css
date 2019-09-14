@@ -2,8 +2,18 @@
   font-size: 14px;
 }
 
-.container {
+main.app {
   display: flex;
+
+}
+
+.navbar {
+  height: 4em;
+  z-index: 100;
+}
+
+.navbar img {
+  height: 2em;
 }
 
 .user.card {

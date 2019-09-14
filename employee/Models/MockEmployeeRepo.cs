@@ -17,21 +17,21 @@ namespace employee.Models
                     ID = 0,
                     Name = "Jianjiaojiao",
                     Avatar = "jianjj-avatar.jpg",
-                    Department = "Comedy",
+                    Department = Dept.Comedy,
                     Email = "jdk@comediany.com"
                 },
                 new Employee() {
                     ID = 1,
                     Name = "prismtk",
                     Avatar = "prismtk-avatar.jpg",
-                    Department = "Comedy",
+                    Department = Dept.Security,
                     Email = "prismtk@comediany.com"
                 },
                 new Employee() {
                     ID = 2,
                     Name = "biscuito",
                     Avatar = "biscuito-avatar.jpg",
-                    Department = "Comedy",
+                    Department = Dept.News,
                     Email = "bsk@comediany.com"
                 },
             };

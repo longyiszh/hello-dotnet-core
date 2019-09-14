@@ -8,17 +8,19 @@
 <section class="detail">
   <h2> Details for Employee @Model.Employee.Name</h2>
 
+  <div>
+    <!-- Tag helpers generate routes with respect to the default route defined at Startup.cs, providing more flexibilities. -->
+    <a asp-controller="home" asp-action="." class="btn-info btn"> &lt;-- </a>
+    <a href="#" class="btn-primary btn">Edit</a>
+    <a href="#" class="btn-danger btn">Delete</a>
+  </div>
+
   <div class="card user" title="@Model.Employee.ID">
-    <img class="card-img-top" src="~/images/user-default.png" alt="avatar of @Model.Employee.Name">
+    <img class="card-img-top" src="~/images/user-default.png" alt="avatar of @Model.Employee.Name" asp-append-version="true"> <!-- enable hash generation -->
     <div class="card-body">
       <h5 class="card-title">@Model.Employee.Name</h5>
       <p class="card-text">Department: @Model.Employee.Department</p>
       <p class="card-text">Email: <a href="mailto:@Model.Employee.Email">@Model.Employee.Email</a></p>
-    </div>
-    <div class="card-body">
-      <a href="#" class="card-link text-info">View</a>
-      <a href="#" class="card-link text-primary">Edit</a>
-      <a href="#" class="card-link text-danger">Delete</a>
     </div>
   </div>
 </section>

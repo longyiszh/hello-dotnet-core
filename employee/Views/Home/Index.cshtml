@@ -8,14 +8,15 @@
 
 @foreach (var emp in Model) {
   <div class="card user col-3" title="@emp.ID">
-    <img class="card-img-top img-fluid" src="~/images/user-default.png" alt="avatar of @emp.Name">
+    <img class="card-img-top img-fluid" src="~/images/user-default.png" alt="avatar of @emp.Name" asp-append-version="true"> <!-- enable hash generation -->
     <div class="card-body">
       <h5 class="card-title">@emp.Name</h5>
       <p class="card-text">Department: @emp.Department</p>
       <p class="card-text">Email: <a href="mailto:@emp.Email">@emp.Email</a></p>
     </div>
     <div class="card-body">
-      <a href="#" class="card-link text-info">View</a>
+      <!-- <a href="#" class="card-link text-info">View</a> -->
+      <a asp-controller="home" asp-action="details" asp-route-id="@emp.ID" class="card-link text-primary">View</a>
       <a href="#" class="card-link text-primary">Edit</a>
       <a href="#" class="card-link text-danger">Delete</a>
     </div>

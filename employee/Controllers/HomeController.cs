@@ -40,6 +40,11 @@ namespace employee.Controllers
             return View(vm);
         }
 
+        public ViewResult Create()
+        {
+            return View();
+        }
+
         //[Route("~/Home")]
         //[Route("~/")]
         public ViewResult Index()
