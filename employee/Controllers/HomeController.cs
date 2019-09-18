@@ -40,9 +40,17 @@ namespace employee.Controllers
             return View(vm);
         }
 
+        [HttpGet]
         public ViewResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public RedirectToActionResult Create(Employee employee)
+        {
+            Employee newEmployee = _employeeRepo.Add(employee);
+            return RedirectToAction("details", new { id = newEmployee.ID });
         }
 
         //[Route("~/Home")]

@@ -38,6 +38,13 @@ namespace employee.Models
 
         }
 
+        public Employee Add(Employee employee)
+        {
+            employee.ID = employees.Max(emp => emp.ID) + 1;
+            employees.Add(employee);
+            return employee;
+        }
+
         public Employee GetAnEmployee(int ID)
         {
             return employees.FirstOrDefault((emp) => { return emp.ID == ID; });
