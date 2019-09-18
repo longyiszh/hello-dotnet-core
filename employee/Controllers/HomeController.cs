@@ -47,10 +47,17 @@ namespace employee.Controllers
         }
 
         [HttpPost]
-        public RedirectToActionResult Create(Employee employee)
+        public IActionResult Create(Employee employee)
         {
-            Employee newEmployee = _employeeRepo.Add(employee);
-            return RedirectToAction("details", new { id = newEmployee.ID });
+            if (ModelState.IsValid)
+            {
+                Employee newEmployee = _employeeRepo.Add(employee);
+                return RedirectToAction("details", new { id = newEmployee.ID });
+            } else
+            {
+                return View();
+            }
+
         }
 
         //[Route("~/Home")]
