@@ -30,7 +30,9 @@
       <label asp-for="Department">Department</label>
       <div>
         <select asp-for="Department" asp-items="Html.GetEnumSelectList<Dept>()" class="custom-select">
+          <option value="">Select a department</option>
         </select>
+        <span asp-validation-for="Department" class="text-danger"></span>
       </div>
     </div>
 

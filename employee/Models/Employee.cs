@@ -20,7 +20,9 @@ namespace employee.Models
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Invalid Email Format")]
         [Display(Name = "Email Address")]
         public string Email { get; set; }
-        public Dept Department { get; set; }
+
+        [Required]
+        public Dept? Department { get; set; }
         
     }
 }
