@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace employee.Models
+namespace Thrallboard.Models
 {
     public class Employee
     {

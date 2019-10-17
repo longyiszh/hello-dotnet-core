@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace employee.Models
+namespace Thrallboard.Models
 {
     public interface IEmployeeRepo
     {

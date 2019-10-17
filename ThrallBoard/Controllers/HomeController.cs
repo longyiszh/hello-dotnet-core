@@ -1,12 +1,12 @@
-﻿using employee.Models;
-using employee.ViewModels;
+﻿using Thrallboard.Models;
+using Thrallboard.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace employee.Controllers
+namespace Thrallboard.Controllers
 {
     //[Route("[controller]/[action]")] // <- attribute routing: usual in REST API
     public class HomeController : Controller

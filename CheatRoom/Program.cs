@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RGame
+namespace CheatRoom
 {
     class Program
     {
@@ -9,7 +9,6 @@ namespace RGame
         {
             PlayRGames();
         }
-
 
         static void PlayRGames()
         {
@@ -44,7 +43,6 @@ namespace RGame
         {
             return health - (maxHealth * health);
         }
-
 
 
     }
