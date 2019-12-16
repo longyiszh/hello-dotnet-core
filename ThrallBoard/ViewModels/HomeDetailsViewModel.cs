@@ -1,10 +1,10 @@
-﻿using Thrallboard.Models;
+﻿using ThrallBoard.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Thrallboard.ViewModels
+namespace ThrallBoard.ViewModels
 {
     public class HomeDetailsViewModel
     {

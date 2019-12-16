@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Thrallboard.Models
+namespace ThrallBoard.Models
 {
     public class MockEmployeeRepo : IEmployeeRepo
     {
@@ -45,6 +45,16 @@ namespace Thrallboard.Models
             return employee;
         }
 
+        public Employee Delete(int ID)
+        {
+            Employee employee = employees.FirstOrDefault((emp) => { return emp.ID == ID; });
+            if (employee != null)
+            {
+                employees.Remove(employee);
+            }
+            return employee;
+        }
+
         public Employee GetAnEmployee(int ID)
         {
             return employees.FirstOrDefault((emp) => { return emp.ID == ID; });
@@ -53,6 +63,19 @@ namespace Thrallboard.Models
         public IEnumerable<Employee> GetEmployees()
         {
             return employees;
+        }
+
+        public Employee Update(Employee changedEmployee)
+        {
+            Employee employee = employees.FirstOrDefault((emp) => { return emp.ID == changedEmployee.ID; });
+            if (employee != null)
+            {
+                employee.Avatar = changedEmployee.Avatar;
+                employee.Department = changedEmployee.Department;
+                employee.Email = changedEmployee.Email;
+                employee.Name = changedEmployee.Name;
+            }
+            return employee;
         }
     }
 }
