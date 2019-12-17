@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace ThrallBoard.Controllers
 {
@@ -12,11 +14,15 @@ namespace ThrallBoard.Controllers
     public class HomeController : Controller
     {
         private readonly IEmployeeRepo _employeeRepo;
+        private readonly IWebHostEnvironment host;
 
-
-        public HomeController(IEmployeeRepo employeeRepo)
+        public HomeController(
+            IEmployeeRepo employeeRepo,
+            IWebHostEnvironment host
+        )
         {
             _employeeRepo = employeeRepo;
+            this.host = host;
         }
 
         //public ObjectResult GetSingleEmployee()
@@ -47,11 +53,25 @@ namespace ThrallBoard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Employee employee)
+        public IActionResult Create(EmployeeCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-                Employee newEmployee = _employeeRepo.Add(employee);
+                string fileName = null;
+                if (model.Avatar != null)
+                {
+                    // To make the filename always unique
+                    fileName = Guid.NewGuid().ToString() + "_" + model.Avatar.FileName;
+                    string filePath = Path.Combine(host.WebRootPath, "media", fileName);
+                    model.Avatar.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                Employee newEmployee = new Employee() { 
+                  Avatar = fileName,
+                  Department = model.Department,
+                  Email = model.Email,
+                  Name = model.Name
+                };
+                _employeeRepo.Add(newEmployee);
                 return RedirectToAction("details", new { id = newEmployee.ID });
             } else
             {

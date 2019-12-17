@@ -4,7 +4,7 @@
 
 main.app {
   display: flex;
-
+  flex-wrap: wrap;
 }
 
 .navbar {
@@ -18,5 +18,5 @@ main.app {
 
 .user.card {
   margin: 1em auto;
-  /* width: 10em; */
+  min-width: 20em;
 }

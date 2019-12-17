@@ -16,7 +16,7 @@ namespace ThrallBoard.Models
                 {
                     ID = 1,
                     Name = "funnyKitt",
-                    Avatar = "avatar-funnyKitt.jpg",
+                    Avatar = "",
                     Email = "funnyKitt@rmvb.cct",
                     Department = Dept.Comedy
                 },
@@ -25,7 +25,7 @@ namespace ThrallBoard.Models
                 {
                     ID = 2,
                     Name = "bigRuaDog",
-                    Avatar = "brd.jpg",
+                    Avatar = "",
                     Email = "puppyRua@cwrp.com",
                     Department = Dept.IT
                 }

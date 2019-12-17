@@ -7,8 +7,9 @@
 
 
 @foreach (var emp in Model) {
+   string avatarPath = (String.IsNullOrEmpty(emp.Avatar) ? "~/images/user-default.png" : "~/media/" + emp.Avatar);
   <div class="card user col-3" title="@emp.ID">
-    <img class="card-img-top img-fluid" src="~/images/user-default.png" alt="avatar of @emp.Name" asp-append-version="true"> <!-- enable hash generation -->
+    <img class="card-img-top img-fluid" src="@avatarPath" alt="avatar of @emp.Name" asp-append-version="true"> <!-- enable hash generation -->
     <div class="card-body">
       <h5 class="card-title">@emp.Name</h5>
       <p class="card-text">Department: @emp.Department</p>

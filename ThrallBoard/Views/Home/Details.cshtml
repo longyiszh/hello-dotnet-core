@@ -1,8 +1,9 @@
 ﻿@model HomeDetailsViewModel
 
 @{
-  //Layout = "~/Views/Shared/_Layout.cshtml";
-  ViewBag.Title = "Employee Details";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Employee Details";
+    string avatarPath = (String.IsNullOrEmpty(Model.Employee.Avatar) ? "~/images/user-default.png" : "~/media/" + Model.Employee.Avatar);
 }
 
 <section class="detail">
@@ -16,7 +17,7 @@
   </div>
 
   <div class="card user" title="@Model.Employee.ID">
-    <img class="card-img-top" src="~/images/user-default.png" alt="avatar of @Model.Employee.Name" asp-append-version="true"> <!-- enable hash generation -->
+    <img class="card-img-top" src="@avatarPath" alt="avatar of @Model.Employee.Name" asp-append-version="true"> <!-- enable hash generation -->
     <div class="card-body">
       <h5 class="card-title">@Model.Employee.Name</h5>
       <p class="card-text">Department: @Model.Employee.Department</p>
