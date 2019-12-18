@@ -18,7 +18,7 @@
     <div class="card-body">
       <!-- <a href="#" class="card-link text-info">View</a> -->
       <a asp-controller="home" asp-action="details" asp-route-id="@emp.ID" class="card-link text-primary">View</a>
-      <a href="#" class="card-link text-primary">Edit</a>
+      <a asp-controller="home" asp-action="edit" asp-route-id="@emp.ID" class="card-link text-primary">Edit</a>
       <a href="#" class="card-link text-danger">Delete</a>
     </div>
   </div>

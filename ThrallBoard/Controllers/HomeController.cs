@@ -52,6 +52,21 @@ namespace ThrallBoard.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ViewResult Edit(int id)
+        {
+            Employee employee = _employeeRepo.GetAnEmployee(id);
+            EmployeeEditViewModel employeeEdit = new EmployeeEditViewModel()
+            {
+                Id = employee.ID,
+                AvatarApplied = employee.Avatar,
+                Name = employee.Name,
+                Department = employee.Department,
+                Email = employee.Email
+            };
+            return View(employeeEdit);
+        }
+
         [HttpPost]
         public IActionResult Create(EmployeeCreateViewModel model)
         {

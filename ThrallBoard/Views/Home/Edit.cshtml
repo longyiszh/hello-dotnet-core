@@ -1,10 +1,14 @@
-﻿@model EmployeeCreateViewModel
+﻿@model EmployeeEditViewModel
 
 @{ 
-    ViewBag.Title = "Create an employee";
+    ViewBag.Title = "Edit an employee";
+    string avatarPath = (String.IsNullOrEmpty(Model.AvatarApplied) ? "~/images/user-default.png" : "~/media/" + Model.AvatarApplied);
 }
 
-  <form asp-controller="home" asp-action="create" method="post" class="mt-3" enctype="multipart/form-data">
+  <form asp-controller="home" asp-action="edit" method="post" class="editForm mt-3" enctype="multipart/form-data">
+
+    <input hidden asp-for="Id" />
+    <input hidden asp-for="AvatarApplied" />
 
     <div asp-validation-summary="All" class="text-danger"></div>
 
@@ -41,13 +45,23 @@
       <div>
         <div id="avatarFile" class="custom-file">
           <input class="form-control custom-file-input" asp-for="Avatar" aria-describedby="avatarHelp">
-          <label class="custom-file-label">Select a file...</label>
+          <label class="custom-file-label">Click to change the avatar...</label>
         </div>
         <small id="avatarHelp" class="form-text text-muted">A new shiny avatar</small>
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Create</button>
+    <div class="avatar">
+      <picture>
+        <img class="img-fluid" src="@Url.Content(@avatarPath)" alt="@Model.Name 's avatar" asp-append-version="true" />
+      </picture>
+    </div>
+
+    <footer class="action">
+      <button type="submit" class="btn btn-primary">Update</button>
+      <a asp-controller="home" asp-action="." class="btn">Cancel</a>
+    </footer>
+
   </form>
 
 @section Scripts {
