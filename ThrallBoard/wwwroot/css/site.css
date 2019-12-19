@@ -34,3 +34,28 @@ picture {
 .editForm picture img {
   width: 15em;
 }
+
+section.employee404 {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+section.employee404 main.contentHolder {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3em;
+}
+
+section.employee404 header {
+  margin-top: 2em;
+}
+
+section.employee404 header h2 {
+  margin: 1em auto;
+}
+
+section.employee404 footer {
+  margin-top: 2em;
+}

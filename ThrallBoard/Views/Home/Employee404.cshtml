@@ -1,0 +1,21 @@
+﻿@model int;
+
+@{
+    ViewBag.Title = "Unable to find employee";
+}
+
+  <section class="employee404">
+    <main class="contentHolder">
+
+      <header>
+        <h1>We have a problem...</h1>
+        <h2>Employee #@Model is missing from the board</h2>
+        <h2>Hell! He/she might have already been sacrificed!</h2>
+      </header>
+
+      <footer>
+        <a class="btn btn-info" asp-controller="home" asp-action=".">Return to list</a>
+      </footer>
+
+    </main>
+  </section>

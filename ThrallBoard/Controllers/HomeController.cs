@@ -37,13 +37,24 @@ namespace ThrallBoard.Controllers
             //Employee model = _employeeRepo.GetAnEmployee(1);
             //ViewBag.pageTitle = "Employee Details";
             //return View(model);
-            HomeDetailsViewModel vm = new HomeDetailsViewModel()
-            {
-                Employee = _employeeRepo.GetAnEmployee(id??0),
-                title = "Employee Details",
-            };
 
-            return View(vm);
+            Employee employee = _employeeRepo.GetAnEmployee(id.Value);
+
+            if (employee != null)
+            {
+                HomeDetailsViewModel vm = new HomeDetailsViewModel()
+                {
+                    Employee = employee,
+                    title = "Employee Details",
+                };
+
+                return View(vm);
+            } else
+            {
+                Response.StatusCode = 404;
+                return View("Employee404", id.Value);
+            }
+
         }
 
         [HttpGet]

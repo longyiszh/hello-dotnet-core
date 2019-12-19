@@ -48,6 +48,10 @@ namespace ThrallBoard
                     SourceCodeLineCount = 10
                 };
                 app.UseDeveloperExceptionPage(devExOptions);
+            } else
+            {
+                app.UseStatusCodePagesWithRedirects("/Error/{0}"); // Redirects to the error handling page. Changes address bar. Returns status 200 eventually to browser.
+                // app.UseStatusCodePagesWithReExecute("/Error/{0}"); // No redirects. Preserves original url (including query strings). Returns 404 eventually.
             }
 
             #region customize default html page method 1
