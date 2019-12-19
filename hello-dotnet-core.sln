@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThrallBoard", "ThrallBoard\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheatRoom", "CheatRoom\CheatRoom.csproj", "{C466A72A-F35C-4A63-B05D-C3A22B402E62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPit", "CloudPit\CloudPit.csproj", "{AC828110-4F03-414E-AD83-CC237D6DE43A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C466A72A-F35C-4A63-B05D-C3A22B402E62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C466A72A-F35C-4A63-B05D-C3A22B402E62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C466A72A-F35C-4A63-B05D-C3A22B402E62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC828110-4F03-414E-AD83-CC237D6DE43A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC828110-4F03-414E-AD83-CC237D6DE43A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC828110-4F03-414E-AD83-CC237D6DE43A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC828110-4F03-414E-AD83-CC237D6DE43A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
