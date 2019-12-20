@@ -10,6 +10,8 @@ namespace CloudPit.Actions
     {
         Player GetPlayer(string DBName);
         IEnumerable<Player> GetPlayerList();
-
+        CUDMessage AddPlayer(Player newPlayer);
+        CUDMessage UpdatePlayers(dynamic condition, Player token);
+        CUDMessage DeletePlayer(string dbname);
     }
 }
