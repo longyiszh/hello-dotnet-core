@@ -37,6 +37,7 @@ namespace ThrallBoard.Controllers
             //Employee model = _employeeRepo.GetAnEmployee(1);
             //ViewBag.pageTitle = "Employee Details";
             //return View(model);
+            //throw new Exception("Disastrous error");
 
             Employee employee = _employeeRepo.GetAnEmployee(id.Value);
 

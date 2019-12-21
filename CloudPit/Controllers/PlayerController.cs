@@ -102,7 +102,7 @@ namespace CloudPit.Controllers
             }
 
             message.Message = "Invalid parameters provided";
-            Response.StatusCode = 500;
+            Response.StatusCode = 400;
             return new JsonResult(message);
 
         }

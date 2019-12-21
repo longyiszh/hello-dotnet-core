@@ -3,6 +3,7 @@ using CloudPit.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace CloudPit.Actions
@@ -91,7 +92,7 @@ namespace CloudPit.Actions
             return players;
         }
 
-        public CUDMessage UpdatePlayers(dynamic condition, Player token)
+        public CUDMessage UpdatePlayers(JsonElement condition, Player token)
         {
             //List<Player> matchedPlayers = players.Where(( player ) => { return player.DBName == dbname; }).ToList();
             List<Player> matchedPlayers = players.GetRange(0, 2);

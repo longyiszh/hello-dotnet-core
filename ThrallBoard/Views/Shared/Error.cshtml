@@ -1,0 +1,28 @@
+﻿<section class="globalError">
+  <header class="globalError">
+    <h1>A <span class="alert text-danger">disastrous error</span>  just occured!</h1>
+    <h2>What's worse, we have totally no idea how to HANDLE it...</h2>
+  </header>
+
+  <main class="globalError">
+    <h3 class="alert text-danger">
+      ! This section is supposed to be hidden and not be sent to client !
+    </h3>
+
+    <div class="alert alert-danger">
+      <h4>Path</h4>
+      <p>@ViewBag.exceptionPath</p>
+    </div>
+
+    <div class="alert alert-danger">
+      <h4>Message</h4>
+      <p>@ViewBag.exceptionMessage</p>
+    </div>
+
+    <div class="alert alert-danger">
+      <h4>Stack Trace</h4>
+      <p>@ViewBag.exceptionStack</p>
+    </div>
+
+  </main>
+</section>

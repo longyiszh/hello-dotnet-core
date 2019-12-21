@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -25,6 +27,19 @@ namespace ThrallBoard.Controllers
                     break;
             }
             return View("HTTPError");
+        }
+
+        [Route("Error")]
+        [AllowAnonymous]
+        public IActionResult Error()
+        {
+            var exception = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+
+            ViewBag.exceptionPath = exception.Path;
+            ViewBag.exceptionMessage = exception.Error.Message;
+            ViewBag.exceptionStack = exception.Error.StackTrace;
+
+            return View("Error");
         }
     }
 }

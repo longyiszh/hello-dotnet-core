@@ -59,3 +59,13 @@ section.employee404 header h2 {
 section.employee404 footer {
   margin-top: 2em;
 }
+
+section.globalError header.globalError {
+  margin: 1em auto;
+}
+
+section.globalError main.globalError {
+  border: 1px dashed red;
+  padding: 1em;
+  margin: 1em auto;
+}
