@@ -27,6 +27,7 @@ namespace CloudPit
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IPlayerService, MockPlayerService>();
+            services.AddSingleton<IFactionService, MockFactionService>();
             services.AddControllers();
         }
 

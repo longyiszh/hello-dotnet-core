@@ -16,15 +16,15 @@ namespace CloudPit.Controllers
     {
         private readonly IPlayerService _playerService;
 
+        public PlayerController(IPlayerService playerService)
+        {
+            _playerService = playerService;
+        }
+
         public class UpdateRequest
         {
             public JsonElement condition { get; set; }
             public Player token { get; set; }
-        }
-
-        public PlayerController(IPlayerService playerService)
-        {
-            _playerService = playerService;
         }
 
         [HttpGet]
