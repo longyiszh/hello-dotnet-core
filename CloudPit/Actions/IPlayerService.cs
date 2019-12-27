@@ -9,10 +9,10 @@ namespace CloudPit.Actions
 {
     public interface IPlayerService
     {
-        Player GetPlayer(string DBName);
-        IEnumerable<Player> GetPlayerList();
-        CUDMessage AddPlayer(Player newPlayer);
-        CUDMessage UpdatePlayers(JsonElement condition, Player token);
-        CUDMessage DeletePlayer(string dbname);
+        Task<Player> GetPlayer(string dbname);
+        Task<IEnumerable<Player>> GetPlayerList();
+        Task<CUDMessage> AddPlayer(Player newPlayer);
+        Task<CUDMessage> UpdatePlayers(JsonElement condition, JsonElement token);
+        Task<CUDMessage> DeletePlayer(string dbname);
     }
 }

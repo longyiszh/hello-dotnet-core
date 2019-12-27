@@ -8,7 +8,7 @@ namespace CloudPit.Models
     public class CUDMessage
     {
         public bool OK { get; set; }
-        public int NumAffected { get; set; }
+        public long NumAffected { get; set; }
         public string Message { get; set; }
     }
 }

@@ -36,7 +36,7 @@ namespace CloudPit.Actions
             };
         }
 
-        public CUDMessage AddPlayer(Player newPlayer)
+        public async Task<CUDMessage> AddPlayer(Player newPlayer)
         {
             CUDMessage message = new CUDMessage()
             {
@@ -56,10 +56,9 @@ namespace CloudPit.Actions
                 message.Message = e.ToString();
             }
             return message;
-
         }
 
-        public CUDMessage DeletePlayer(string dbname)
+        public async Task<CUDMessage> DeletePlayer(string dbname)
         {
             CUDMessage message = new CUDMessage()
             {
@@ -68,13 +67,14 @@ namespace CloudPit.Actions
             };
 
 
-            Player player = players.FirstOrDefault(( player ) => { return player.DBName == dbname; });
+            Player player = players.FirstOrDefault((player) => { return player.DBName == dbname; });
             if (player != null)
             {
                 players.Remove(player);
                 message.NumAffected = 1;
 
-            } else
+            }
+            else
             {
                 message.NumAffected = 0;
             }
@@ -82,30 +82,30 @@ namespace CloudPit.Actions
             return message;
         }
 
-        public Player GetPlayer(string DBName)
+        public async Task<Player> GetPlayer(string dbname)
         {
-            return players.FirstOrDefault((player) => { return player.DBName == DBName; });
+            return players.FirstOrDefault((player) => { return player.DBName == dbname; });
         }
 
-        public IEnumerable<Player> GetPlayerList()
+        public async Task<IEnumerable<Player>> GetPlayerList()
         {
             return players;
         }
 
-        public CUDMessage UpdatePlayers(JsonElement condition, Player token)
+        public async Task<CUDMessage> UpdatePlayers(JsonElement condition, JsonElement token)
         {
-            //List<Player> matchedPlayers = players.Where(( player ) => { return player.DBName == dbname; }).ToList();
-            List<Player> matchedPlayers = players.GetRange(0, 2);
+            //List<Player> matchedPlayers = players.GetRange(0, 2);
 
-            List<Player> updatedPlayers = matchedPlayers.Select((player) => player = Utility.CombineProperties(player, token)).ToList();
+            //List<Player> updatedPlayers = matchedPlayers.Select((player) => player = Utility.CombineProperties(player, token)).ToList();
 
             return new CUDMessage()
             {
                 OK = true,
-                NumAffected = updatedPlayers.Count
+                NumAffected = 2
             };
-
         }
+
+
 
     }
 }

@@ -10,47 +10,50 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CloudPit.Controllers
 {
+
+    public class UpdateRequest
+    {
+        public JsonElement condition { get; set; }
+        public JsonElement token { get; set; }
+    }
+
+
     [Route("api/[controller]")]
     [ApiController]
     public class PlayerController : ControllerBase
     {
-        private readonly IPlayerService _playerService;
+        private readonly IPlayerService playerService;
 
         public PlayerController(IPlayerService playerService)
         {
-            _playerService = playerService;
-        }
-
-        public class UpdateRequest
-        {
-            public JsonElement condition { get; set; }
-            public Player token { get; set; }
+            this.playerService = playerService;
         }
 
         [HttpGet]
-        public IEnumerable<Player> GetAll()
+        public async Task<IEnumerable<Player>> GetAll()
         {
-            return _playerService.GetPlayerList();
+            IEnumerable<Player> result = await playerService.GetPlayerList();
+            return result;
         }
 
         [HttpGet("{dbname}")]
-        public IActionResult GetSingle(string dbname)
+        public async Task<IActionResult> GetSingle(string dbname)
         {
-            Player player = _playerService.GetPlayer(dbname);
+            Player player = await playerService.GetPlayer(dbname);
             if (player == null)
             {
                 return new JsonResult(new object());
             } else
             {
-                return Ok(_playerService.GetPlayer(dbname));
+                return Ok(player);
             }
             
         }
 
         [HttpPost]
-        public IActionResult Add(Player newPlayer)
+        public async Task<IActionResult> Add([FromBody]Player newPlayer)
         {
-            CUDMessage message = _playerService.AddPlayer(newPlayer);
+            CUDMessage message = await playerService.AddPlayer(newPlayer);
             if (message.OK)
             {
                 message.Message = "Successfuly added the new player: " + newPlayer.DBName;
@@ -64,9 +67,9 @@ namespace CloudPit.Controllers
         }
 
         [HttpDelete("{dbname}")]
-        public IActionResult Delete(string dbname)
+        public async Task<IActionResult> Delete(string dbname)
         {
-            CUDMessage message = _playerService.DeletePlayer(dbname);
+            CUDMessage message = await playerService.DeletePlayer(dbname);
             if (message.OK)
             {
                 message.Message = "Successfuly deleted player: " + dbname;
@@ -81,13 +84,13 @@ namespace CloudPit.Controllers
         }
 
         [HttpPatch]
-        public IActionResult UpdateList(UpdateRequest reqBody)
+        public async Task<IActionResult> UpdateList([FromBody]UpdateRequest reqBody)
         {
             CUDMessage message = new CUDMessage();
 
-            if (!string.IsNullOrEmpty(reqBody.condition.ToString()) && reqBody.token != null)
+            if (!string.IsNullOrEmpty(reqBody.condition.ToString()) && !string.IsNullOrEmpty(reqBody.token.ToString()))
             {
-                message = _playerService.UpdatePlayers(reqBody.condition, reqBody.token);
+                message = await playerService.UpdatePlayers(reqBody.condition, reqBody.token);
                 if (message.OK)
                 {
                     message.Message = "Successfuly updated the selected player(s)";

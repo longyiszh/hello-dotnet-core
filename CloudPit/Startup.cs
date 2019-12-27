@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CloudPit.Actions;
+using CloudPit.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace CloudPit
 {
@@ -26,8 +28,18 @@ namespace CloudPit
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IPlayerService, MockPlayerService>();
+            // add secrets
+            services.Configure<ProjectSettings>(
+                Configuration.GetSection("CloudPit")
+            );
+            services.AddSingleton<IProjectSettings>(sp =>
+                sp.GetRequiredService<IOptions<ProjectSettings>>().Value
+            );
+
+            // add endpoints
+            services.AddTransient<IPlayerService, MongoPlayerService>();
             services.AddSingleton<IFactionService, MockFactionService>();
+            services.AddTransient<IDBContext, DBAccess>();
             services.AddControllers();
         }
 
