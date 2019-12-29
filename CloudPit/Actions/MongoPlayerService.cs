@@ -71,9 +71,50 @@ namespace CloudPit.Actions
             return await context.Players.Find(p => p.DBName == dbname).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Player>> GetPlayerList()
+        public async Task<IEnumerable<Player>> GetPlayerList(JsonElement condition)
         {
-            return await context.Players.Find(_ => true).ToListAsync();
+            FilterDefinition<Player> filter = condition.ToString();
+            return await context.Players.Find(filter).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Player>> GetPlayerList(JsonElement condition, GetListOptions options)
+        {
+            FilterDefinition<Player> filter = condition.ToString();
+
+            // Pagination
+            int pageSize = (options.PerPage > 0 ? options.PerPage : 10);
+            int currentPage = (options.Page > 0 ? options.Page : 1);
+
+            var query = context.Players.Find(filter)
+                                       .Limit(pageSize)
+                                       .Skip((currentPage - 1) * pageSize);
+
+            // Projection
+            var projectionToken = new Dictionary<string, int>() {};
+
+            foreach (var field in options.Includes)
+            {
+                projectionToken.Add(field, 1);
+            }
+
+            foreach (var field in options.Excludes)
+            {
+                projectionToken.Add(field, 0);
+            }
+
+            //if (projectionToken.Count > 0)
+            //{
+                ProjectionDefinition<Player> projection = projectionToken.ToJson();
+                query = query.Project<Player>(projection);
+            //}
+
+            // Sorting
+            if (options.OrderBy != null)
+            {
+                query = query.Sort($"{{ {options.OrderBy}: { (options.Order == "desc"? -1 : 1) } }}");
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<CUDMessage> UpdatePlayers(JsonElement condition, JsonElement token)

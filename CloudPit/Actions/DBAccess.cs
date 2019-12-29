@@ -20,7 +20,7 @@ namespace CloudPit.Actions
         private IMongoDatabase Connect()
         {
             var client = new MongoClient(settings.ConnectionString);
-            return client.GetDatabase("cloudPit");
+            return client.GetDatabase(settings.DBName);
         }
 
         public IMongoCollection<Player> Players => dbInstance.GetCollection<Player>("players");

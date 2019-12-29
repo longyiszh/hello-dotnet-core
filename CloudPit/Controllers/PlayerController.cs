@@ -11,6 +11,17 @@ using Microsoft.AspNetCore.Mvc;
 namespace CloudPit.Controllers
 {
 
+    public class GetListRequestParams
+    {
+        public JsonElement Q { get; set; }
+        public GetListOptions O { get; set; }
+    }
+
+    public class GetListRequest
+    {
+        public string query { get; set; }
+    }
+
     public class UpdateRequest
     {
         public JsonElement condition { get; set; }
@@ -29,11 +40,56 @@ namespace CloudPit.Controllers
             this.playerService = playerService;
         }
 
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<IEnumerable<Player>> GetAll()
         {
-            IEnumerable<Player> result = await playerService.GetPlayerList();
+            IEnumerable<Player> result = await playerService.GetPlayerList(JsonDocument.Parse("{}").RootElement);
             return result;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetList([FromQuery] GetListRequest request)
+        {
+
+            GetListRequestParams query;
+            try
+            {
+                query = JsonSerializer.Deserialize<GetListRequestParams>(
+                    request.query,
+                    new JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = true,
+                    }
+                );
+            }
+            catch (Exception e)
+            {
+                Response.StatusCode = 400;
+                Console.WriteLine(e.ToString());
+                return new JsonResult(JsonDocument.Parse("{\"message\": \"Invalid Query provided\" }").RootElement);
+            }
+
+            try
+            {
+                IEnumerable<Player> result;
+
+                if (query.O == null)
+                {
+                    result = await playerService.GetPlayerList(query.Q);
+                } else
+                {
+                    result = await playerService.GetPlayerList(query.Q, query.O);
+                }
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                Response.StatusCode = 500;
+                Console.WriteLine(e.ToString());
+                return new JsonResult(JsonDocument.Parse("{\"message\": \"Failed to perform query\" }").RootElement);
+            }
+
         }
 
         [HttpGet("{dbname}")]

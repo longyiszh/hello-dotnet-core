@@ -87,7 +87,12 @@ namespace CloudPit.Actions
             return players.FirstOrDefault((player) => { return player.DBName == dbname; });
         }
 
-        public async Task<IEnumerable<Player>> GetPlayerList()
+        public async Task<IEnumerable<Player>> GetPlayerList(JsonElement condition)
+        {
+            return players;
+        }
+
+        public async Task<IEnumerable<Player>> GetPlayerList(JsonElement condition, GetListOptions options)
         {
             return players;
         }
