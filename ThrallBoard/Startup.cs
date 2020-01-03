@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +32,9 @@ namespace ThrallBoard
 
             // DB
             services.AddDbContextPool<AppDBContext>((options) => { options.UseSqlServer(config.GetConnectionString("Main")); });
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                    .AddEntityFrameworkStores<AppDBContext>();
 
             // services
             //services.AddSingleton<IEmployeeRepo, MockEmployeeRepo>();
@@ -77,6 +81,7 @@ namespace ThrallBoard
 
 
             app.UseFileServer();
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
