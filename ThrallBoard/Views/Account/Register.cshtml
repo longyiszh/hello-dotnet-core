@@ -21,7 +21,7 @@
       <div class="form-group">
         <label asp-for="Password"></label>
         <div>
-          <input type="text" class="form-control" asp-for="Password" aria-describedby="passwordHelp" placeholder="Enter your password">
+          <input type="password" class="form-control" asp-for="Password" aria-describedby="passwordHelp" placeholder="Enter your password">
           <small id="passwordHelp" class="form-text text-muted">Just tell us your password. It never hurts.</small>
           <span asp-validation-for="Password" class="text-danger"></span>
         </div>
@@ -30,7 +30,7 @@
       <div class="form-group">
         <label asp-for="ConfirmPassword"></label>
         <div>
-          <input type="text" class="form-control" asp-for="ConfirmPassword" aria-describedby="passwordAgainHelp" placeholder="Spell your password again carefully">
+          <input type="password" class="form-control" asp-for="ConfirmPassword" aria-describedby="passwordAgainHelp" placeholder="Spell your password again carefully">
           <small id="passwordAgainHelp" class="form-text text-muted">Say your password again carefully, we do not want any mistake</small>
           <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
         </div>
