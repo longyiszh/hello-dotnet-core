@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CheatRoom
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
+            Console.WriteLine("============ Start playing games (Delegation example) ================");
             PlayRGames();
+            Console.WriteLine("============ Start cheat license (async/await example)================");
+            await GetLicense();
+
         }
 
         static void PlayRGames()
@@ -33,6 +38,27 @@ namespace CheatRoom
 
             }
         }
+
+        static async Task<bool> GetLicense()
+        {
+            var cLicense = new CheatLicense();
+
+            Console.WriteLine($"We are fetching your RGame license FTL," +
+                $"but also reminding you buying our premium license " +
+                $"for CGame! Free trial for 10 days!");
+
+            Console.WriteLine($"You will never regret that we -> promise <- !");
+
+            bool result = await cLicense.DownloadAsync();
+
+            // Because we use await, the message below only shows after "download"
+            Console.WriteLine($"Cool! You know what? " +
+                $"You will get gaming experience even smoother than that download!");
+
+            return result;
+
+        }
+
 
         public static double questionableRH1(double health, double maxHealth)
         {
