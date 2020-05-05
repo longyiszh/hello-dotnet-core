@@ -89,7 +89,10 @@ namespace ThrallBoard
 
             app.UseFileServer();
             app.UseAuthentication();
+            
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

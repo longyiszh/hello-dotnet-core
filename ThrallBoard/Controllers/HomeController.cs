@@ -7,9 +7,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ThrallBoard.Controllers
 {
+    [Authorize]
     //[Route("[controller]/[action]")] // <- attribute routing: usual in REST API
     public class HomeController : Controller
     {
@@ -32,12 +34,13 @@ namespace ThrallBoard.Controllers
         //}
 
         //[Route("{id?}")]
+        [AllowAnonymous]
         public ViewResult Details(int? id)
         {
             //Employee model = _employeeRepo.GetAnEmployee(1);
             //ViewBag.pageTitle = "Employee Details";
             //return View(model);
-            throw new Exception("Disastrous error");
+            //throw new Exception("Disastrous error");
 
             Employee employee = _employeeRepo.GetAnEmployee(id.Value);
 
@@ -58,6 +61,7 @@ namespace ThrallBoard.Controllers
 
         }
 
+        
         [HttpGet]
         public ViewResult Create()
         {
@@ -109,6 +113,7 @@ namespace ThrallBoard.Controllers
 
         //[Route("~/Home")]
         //[Route("~/")]
+        [AllowAnonymous]
         public ViewResult Index()
         {
             var model = _employeeRepo.GetEmployees();
