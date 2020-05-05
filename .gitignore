@@ -332,3 +332,4 @@ ASALocalRun/
 # Site Specific
 **/wwwroot/lib
 **/Migrations
+.vscode/**
