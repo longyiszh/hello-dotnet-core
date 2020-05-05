@@ -23,6 +23,7 @@ namespace ThrallBoard.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -45,7 +46,7 @@ namespace ThrallBoard.Controllers
                 if (result.Succeeded)
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("home", "index");
+                    return RedirectToAction("home", ".");
                 }
 
                 foreach((var error, int index) in result.Errors.Select((error, index) => (error, index)))
@@ -56,5 +57,40 @@ namespace ThrallBoard.Controllers
             }
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("home", ".");
+                }
+
+                ModelState.AddModelError("0", "Wrong username or password");
+
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("home", ".");
+        }
+
+
     }
 }

@@ -33,12 +33,19 @@ namespace ThrallBoard
             // DB
             services.AddDbContextPool<AppDBContext>((options) => { options.UseSqlServer(config.GetConnectionString("Main")); });
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                    .AddEntityFrameworkStores<AppDBContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                // configure password options. Can also be achieved by services.Configure<IdentityOptions>()
+                options.Password.RequiredLength = 8;
+                options.Password.RequiredUniqueChars = 4;
+                options.Password.RequireNonAlphanumeric = false;
+            }
+            ).AddEntityFrameworkStores<AppDBContext>();
 
             // services
             //services.AddSingleton<IEmployeeRepo, MockEmployeeRepo>();
             services.AddScoped<IEmployeeRepo, SQLEmployeeRepo>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
