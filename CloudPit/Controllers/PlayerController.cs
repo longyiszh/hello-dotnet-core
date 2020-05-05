@@ -54,8 +54,9 @@ namespace CloudPit.Controllers
             GetListRequestParams query;
             try
             {
+
                 query = JsonSerializer.Deserialize<GetListRequestParams>(
-                    request.query,
+                    (string.IsNullOrEmpty(request.query)? "{\"q\": {}}": request.query),
                     new JsonSerializerOptions()
                     {
                         PropertyNameCaseInsensitive = true,
