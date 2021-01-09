@@ -106,6 +106,18 @@ namespace ThrallBoard.Controllers
             return RedirectToAction("home", ".");
         }
 
+        [AllowAnonymous]
+        [AcceptVerbs("Get", "Post")]
+        public async Task<IActionResult> IsEmailInUse(string email) {
+            IdentityUser user = await userManager.FindByEmailAsync(email);
+            if (user is { })
+            {
+                return Json($"Email {email} is already in use");
+            }
+
+            return Json(true);
+        }
+
 
     }
 }
