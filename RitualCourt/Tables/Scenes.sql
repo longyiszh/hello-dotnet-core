@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Scenes]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [DBName] NVARCHAR(50) NULL, 
+    [Type] NVARCHAR(50) NULL
+)
