@@ -55,15 +55,14 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
-    <Folder Include="Properties" />
-    <Folder Include="Tables" />
-  </ItemGroup>
-  <ItemGroup>
-    <Build Include="Tables\Acolytes.sql" />
-    <Build Include="Tables\Scenes.sql" />
-    <Build Include="Tables\Ceremonies.sql" />
+    <Build Include="dbo\**\*.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RitualCourt.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\StoredProcedures\" />
+    <Folder Include="dbo\Tables\" />
   </ItemGroup>
 </Project>
